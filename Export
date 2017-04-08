@@ -1,0 +1,17 @@
+#-*-coding:utf-8-*-
+import requests,re,pandas
+Cookie = 'eas_sid=P1z4V7k0Q3I7i1u2s3B8D9x7w7; pac_uid=1_【123456789】; tvfe_boss_uuid=07a87cbe48a357cd; mobileUV=1_158d364a082_42fe3; msuid=ixe30n7wr7c8tcd83tkdzsmv5acrhry3uhbdcmsp; RK=KAsip+1fU/; pgv_pvid=7881375080; o_cookie=973256022; pgv_info=ssid=s6646451928; _qpsvr_localtk=0.26507022137728464; ptisp=ctc; ptcz=effe532cae393c9a8a3b2e70beee50a44d327284f2810e2189482c5507f89985; pt2gguin=o0973256022; uin=o0973256022; skey=@Pwqvf6JHF; p_uin=o0973256022; p_skey=iv2EKaiqA3iwDJ4XPpdbPuChHYl7NiheDxq4wwXgyeM_; pt4_token=TfhYydeszhgIeqb2MiQf*jI4Oz921aWAu6ezeRnhB90_'
+Referer = 'http://qun.qq.com/member.html?pt_guid_sig=52E4F5E979AF5F0956135D75FA728F7F592F41651E44252613FF1CA9345A30C1F68CC6AD3C6B9099'
+Requested = 'XMLHttpRequest'
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0','Cookie': Cookie,'Referer':Referer,'X-Requested-With':Requested}
+post_data = {'gc':【123456789】'st':0,'end':10000000,'sort':0,'bkn':114924551}
+url = "http://qun.qq.com/cgi-bin/qun_mgr/search_group_members"
+return_data=requests.post(url,data=post_data,headers = headers)
+qqlist = re.findall(r'\d{5,13}',return_data.text)
+j=0
+a = list(set(qqlist))
+print len(a),len(qqlist)
+
+for qq in a:
+	j=j+1
+	print j,qq
